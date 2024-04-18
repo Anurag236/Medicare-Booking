@@ -25,8 +25,30 @@ const navLinks = [
 ];
 
 const Header = () => {
+
+  const headerRef = useRef(null)
+  const menuRef = useRef(null)
+
+  const handleStickyHeader = () => {
+    window.addEventListener('scroll', ()=>{
+      if(document.body.scrollTop > 80 || document.documentElement.scrollTop > 80){
+        headerRef.current.classList.add('sticky__header');
+      }else{
+        headerRef.current.classList.remove('sticky__header');
+      }
+    })
+  }
+
+  useEffect(() =>{
+    handleStickyHeader()
+
+    return () => window.removeEventListener('scroll',handleStickyHeader)
+  })
+
+  const togglMenu = () => menuRef.current.classList.toggle('show__menu')
+
   return (
-    <header className='header flex items-center'>
+    <header className='header flex items-center' ref={headerRef}>
       <div className="container">
         <div className='flex items-center justify-between'>
           {/*=============== logo =================*/}
@@ -35,7 +57,7 @@ const Header = () => {
           </div>
 
           {/*=============== menu =================*/}
-          <div className="navigation">
+          <div className="navigation" ref={menuRef} onClick={togglMenu}>
             <ul className="menu flex items-center gap-[2.7rem]">
               {navLinks.map((link, index) => (
                 <li key={index}>
@@ -56,7 +78,7 @@ const Header = () => {
 
           {/*=============== nav right =================*/}
           <div className="flex items-center gap-4">
-            <div>
+            <div className='hidden'>
               <Link to='/'>
                 <figure className="w-[35px] h-[35px] rounded-full">
                   <img src={userImg} className="w-full rounded-full cursor-pointer" alt="" />
@@ -71,7 +93,7 @@ const Header = () => {
              </button>
            </Link>
 
-           <span className='md:hidden'>
+           <span className='md:hidden' onClick={togglMenu}>
             <BiMenu className="w-6 h-6 cursor-pointer"/>
            </span>
 
