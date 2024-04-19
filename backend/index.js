@@ -16,7 +16,7 @@ const corsOptions = {
 }
 
 app.get('/',(req,res)=>{
-    res.send('Api is working');
+    res.send('Apiii is working');
 });
 
 //database connection
