@@ -19,6 +19,7 @@ import FaqItem from "../components/Faq/FaqItem";
 import FaqList from "../components/Faq/FaqList";
 import Testimonial from "../components/Testimonial/Testimonial";
 
+
 const Home = () => {
   return (
     <>
@@ -344,8 +345,9 @@ const Home = () => {
               expert health care.
             </p>
           </div>
-
-       <Testimonial/>
+        
+        <Testimonial/>
+    
         </div>
       </section>
 
