@@ -45,7 +45,7 @@ export const getSingleUser = async(req,res) =>{
             data:user,
         });
     } catch (err) {        
-        res.status(404).json({sucess:false, message:'No user found'});
+        res.status(404).json({sucess:false, message:'No... user found'});
     }
 };
 
