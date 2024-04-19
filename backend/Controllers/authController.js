@@ -28,7 +28,7 @@ export const register = async(req,res)=>{
 
         //check if user exist
         if(user){
-            return res.status(400).json({message:'User already exist'})
+            return res.status(400).json({message:'User Already exist'})
         }
 
 
