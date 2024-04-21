@@ -6,17 +6,10 @@
   "scripts": {
     "dev": "vite",
     "build": "vite build",
-<<<<<<< HEAD
     "lint": "eslint . --ext js,jsx --report-unused-disable-directives --max-warnings 0",
-    "preview": "vite preview"
-<<<<<<< HEAD
-=======
-  
-=======
+    "preview": "vite preview",
     "lint": "eslint src --ext js,jsx --report-unused-disable-directives --max-warnings 0",
     "preview": "vite preview"
->>>>>>> 1dd2d1f7358aa05bf5f1faf709fd9f618d6a1e10
->>>>>>> e4ae14cba58e41c58ca0e2a62b7c14cb3db1f306
   },
   "dependencies": {
     "react": "^18.2.0",
