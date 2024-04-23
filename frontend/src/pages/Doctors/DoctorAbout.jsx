@@ -1,4 +1,4 @@
-<<<<<<< HEAD
+
 import React from "react";
 import { formateDate } from "../../utils/formateDate";
 const DoctorAbout = ({ doctor }) => {
@@ -96,14 +96,3 @@ const DoctorAbout = ({ doctor }) => {
   
   export default DoctorAbout;
   
-=======
-import React from 'react'
-
-const DoctorAbout = () => {
-  return (
-    <div>DoctorAbout</div>
-  )
-}
-
-export default DoctorAbout
->>>>>>> e4ae14cba58e41c58ca0e2a62b7c14cb3db1f306

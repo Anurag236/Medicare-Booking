@@ -49,6 +49,7 @@ const FeedBackForm = () => {
           className="border border-solid border-[#0066ff34] focus:outline outline-primaryColor w-full px-4 py-3 rounded-md"
           placeholder="Write your message"
           rows={5}
+          value={reviewtext}
           onChange={(e) => setReviewText(e.target.value)}
         ></textarea>
       </div>

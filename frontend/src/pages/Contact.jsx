@@ -1,4 +1,4 @@
-import useTitle from "../Hooks/useTitle";
+// import useTitle from "../Hooks/useTitle";
 
 const Contact = () => {
   useTitle("Contact");
