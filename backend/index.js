@@ -35,7 +35,7 @@ const connectDB = async () => {
   }
 };
 
-// //middleware
+//middleware
 app.use(express.json());
 app.use(cookieParser());
 app.use(cors(corsOptions));

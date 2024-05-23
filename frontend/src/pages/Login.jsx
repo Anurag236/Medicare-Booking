@@ -1,8 +1,10 @@
 import { useState, useContext } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { BASE_URL } from "../config";
 import { toast } from "react-toastify";
 import {authContext} from '../context/AuthContext.jsx'
+import { useNavigate } from "react-router-dom";
+import  HashLoader  from 'react-spinners/HashLoader'
  
 const Login = () => {
   const [formData, setFormData] = useState({
@@ -10,7 +12,7 @@ const Login = () => {
     password: "",
   });
 
-  const [loading, setLoading] = useState(false)
+  const [loading, setLoading] = useState(false);
   const navigate = useNavigate()
   const {dispatch} = useContext(authContext)
 
@@ -18,7 +20,7 @@ const Login = () => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
-  const submitHandler = async (event) => {
+  const submitHandler = async event => {
     event.preventDefault();
     setLoading(true);
 
@@ -36,25 +38,27 @@ const Login = () => {
       if (!res.ok) {
         throw new Error(result.message);
       }
-
+    
       dispatch({
-        type: 'LOGIN_SUCCESS',
+        type: "LOGIN_SUCCESS",
         payload:{
           user: result.data,
           token: result.token,
           role: result.role,
-        } 
-      })
+        },
+      });
 
+       
       console.log(result, "login data");
 
       setLoading(false);
       toast.success(result.message);
-      navigate("/home");
+      navigate('/home');
     } catch (err) {
       toast.error(err.message);
       setLoading(false);
     }
+
   };
 
 
@@ -94,14 +98,15 @@ const Login = () => {
             />
           </div>
 
-          <div className="mt-7">
+          { <div className="mt-7">
             <button
               type="submit"
               className="w-full bg-primaryColor text-white text-[18px] leading-[30px] rounded-lg py-3"
             >
-              Login
+              { loading ? <HashLoader size={25} color="#fff"/> : ' Login'}
             </button>
-          </div>
+          </div> }
+          
 
           <p className="mt-5 text-textColor text-center">
             Don&apos;t have an account?

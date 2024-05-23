@@ -91,7 +91,7 @@ export const login = async (req, res) => {
 
     //compare password
     const isPasswordMatch = await bcrypt.compare(
-      req.body.password,
+      password,
       user.password
     );
 
@@ -103,10 +103,10 @@ export const login = async (req, res) => {
 
     //get token
     const token = generateToken(user);
-
+    console.log(token);
     const { passsword, role, appointments, ...rest } = user._doc;
 
-    res.status(400).json({
+    res.status(200).json({
       success: true,
       message: "Successfuly login",
       token,

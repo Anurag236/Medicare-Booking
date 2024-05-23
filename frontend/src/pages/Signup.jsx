@@ -1,7 +1,6 @@
+import { useState } from "react";
 import signupImg from "../assets/images/signup.gif";
 import { Link, useNavigate } from "react-router-dom";
-import avatar from "../assets/images/patient-avatar.png";
-import { useState } from "react";
 import uploadImageToCloudinary from "../utils/uploadCloudinary";
 import { BASE_URL } from "../config";
 import { toast } from "react-toastify";
@@ -27,14 +26,42 @@ const Signup = () => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
-  const handleFileInputchange = async (event) => {
+  const handleFileInputChange = async (event) => {
     const file = event.target.files[0];
 
     const data = await uploadImageToCloudinary(file);
 
     setPreviewURL(data.url);
     setSelectedFile(data.url);
-    setFormData({ ...formData, photo: data.url });
+    setFormData({ ...formData, photo:data.url });
+  };
+
+  const submitHandler = async event => {
+    event.preventDefault();
+    setLoading(true);
+
+    try {
+      const res = await fetch(`${BASE_URL}/auth/register`, {
+        method: "post",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(formData),
+      });
+
+      const {message} = await res.json();
+
+      if (!res.ok) {
+        throw new Error(message);
+      }
+
+      setLoading(false);
+      toast.success(message);
+      navigate("/login");
+    } catch (err) {
+      toast.error(err.message);
+      setLoading(false);
+    }
   };
 
   return (
@@ -145,7 +172,7 @@ const Signup = () => {
                   <input
                     type="file"
                     name="photo"
-                    onChange={handleFileInputchange}
+                    onChange={handleFileInputChange}
                     id="customFile"
                     accept=".jpg, .png"
                     className="absolute top-0 left-0 w-full h-full opacity-0 cursor-pointer "
@@ -165,13 +192,17 @@ const Signup = () => {
                   type="submit"
                   className="w-full bg-primaryColor text-white text-[18px] leading-[30px] rounded-lg py-3"
                 >
-                  {loading ? <HashLoader size={35} color="#ffffff" /> : "Sign Up"}
+                  {loading ? (
+                    <HashLoader size={35} color="#ffffff" />
+                  ) : (
+                    "Sign Up"
+                  )}
                 </button>
               </div>
             </form>
             <p className="mt-5 text-textColor text-center">
               Already have an account?
-              <Link to="/register" className="text-primaryColor font-medium ">
+              <Link to="/login" className="text-primaryColor font-medium ">
                 Login
               </Link>
             </p>
