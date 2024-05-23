@@ -1,5 +1,4 @@
 import { useContext, useState } from "react";
-import userImg from "../../assets/images/doctor-img01.png";
 import { authContext } from "./../../context/AuthContext";
 
 import MyBookings from "./MyBookings";
@@ -44,7 +43,7 @@ const Myaccount = () => {
               border-primaryColor"
                 >
                   <img
-                    src={userImg}
+                    src={userData.photo}
                     alt=""
                     className="w-full h-full rounded-full"
                   />
@@ -53,15 +52,15 @@ const Myaccount = () => {
 
               <div className="text-center mt-4">
                 <h3 className="text-[18px] leading-[30px] text-headingColor font-bold">
-                  Aman Sharma
+                  {userData.name}
                 </h3>
                 <p className="text-textColor text-[15px] leading-6 font-medium">
-                  amansharma@gmail.com
+                  {userData.email}
                 </p>
                 <p className="text-textColor text-[15px] leading-6 font-medium">
                   Blood Type:
                   <span className="ml-2 text-headingColor text-[22px] leading-8">
-                    O-
+                    {userData.bloodType}
                   </span>
                 </p>
               </div>
@@ -105,7 +104,7 @@ const Myaccount = () => {
               </div>
 
               {tab === "bookings" && <MyBookings />}
-              {tab === "settings" && <Profile />}
+              {tab === "settings" && <Profile user={userData} />}
             </div>
           </div>
         )}
